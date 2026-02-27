@@ -9,27 +9,27 @@ serverPort = 8080  # Порт для доступа по сети
 
 class MyServer(BaseHTTPRequestHandler):
     """
-        Специальный класс, который отвечает за
-        обработку входящих запросов от клиентов
+    Специальный класс, который отвечает за
+    обработку входящих запросов от клиентов
     """
 
     def do_GET(self):
-
-        """ Метод для обработки входящих GET-запросов """
+        """Метод для обработки входящих GET-запросов"""
         self.send_response(200)  # Отправка кода ответа
-        self.send_header("Content-type", "text/html")  # Отправка типа данных, который будет передаваться
+        self.send_header(
+            "Content-type", "text/html"
+        )  # Отправка типа данных, который будет передаваться
         self.end_headers()  # Завершение формирования заголовков ответа
-        # with open("pages_html/contacts.html", "r") as file:
-        #     html_content = file.read()
-        # self.wfile.write(bytes(html_content, "utf-8"))
-        self.wfile.write(bytes("{'message': 'OK'}", "utf-8"))  # Тело ответа
-
-def run(server_class=HTTPServer, handler_class=MyServer):
-    server_address = ('', 8000)
-    httpd = server_class(server_address, handler_class)
-    print('Starting server on port 8000...')
-    httpd.serve_forever()
-
+        with open("pages_html/page_contact.html", "r", encoding='utf-8') as file:
+            html_content = file.read()
+        self.wfile.write(bytes(html_content, "utf-8"))
+#
+#
+# def run(server_class=HTTPServer, handler_class=MyServer):
+#     server_address = ("", 8000)
+#     httpd = server_class(server_address, handler_class)
+#     print("Starting server on port 8000...")
+#     httpd.serve_forever()
 
 
 if __name__ == "__main__":
