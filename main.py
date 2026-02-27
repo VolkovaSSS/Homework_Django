@@ -1,6 +1,5 @@
 # Импорт встроенной библиотеки для работы веб-сервера
 from http.server import BaseHTTPRequestHandler, HTTPServer
-import time
 
 # Для начала определим настройки запуска
 hostName = "localhost"  # Адрес для доступа по сети
@@ -23,13 +22,6 @@ class MyServer(BaseHTTPRequestHandler):
         with open("pages_html/page_contact.html", "r", encoding='utf-8') as file:
             html_content = file.read()
         self.wfile.write(bytes(html_content, "utf-8"))
-#
-#
-# def run(server_class=HTTPServer, handler_class=MyServer):
-#     server_address = ("", 8000)
-#     httpd = server_class(server_address, handler_class)
-#     print("Starting server on port 8000...")
-#     httpd.serve_forever()
 
 
 if __name__ == "__main__":
